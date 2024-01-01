@@ -1,10 +1,17 @@
 import express from "express";
-// import { addQuizService, deleteQuizService, getAllQuizService, getSpecificQuizService, updateQuizService } from "../../services/quizService/quiz.service";
-import {getAllQuizService} from "../../services/quizService/quiz.service";
-export const router = express.Router()
+import {
+  addQuiz,
+  deleteQuiz,
+  getAllQuiz,
+  getSpecificQuiz,
+  updateQuiz,
+} from "../../controllers/quizController/quiz.controller"
 
-// router.route("/api/quizzes").get(getAllQuizService).post(addQuizService)
-// router.route("/api/quizzes:id").patch(updateQuizService).delete(deleteQuizService).get(getSpecificQuizService)
+export const quizRouter = express.Router();
 
-
-router.route("/api/quizzes").get(getAllQuizService);
+quizRouter.route("/").get(getAllQuiz).post(addQuiz);
+quizRouter
+  .route("/:id")
+  .patch(updateQuiz)
+  .delete(deleteQuiz)
+  .get(getSpecificQuiz);

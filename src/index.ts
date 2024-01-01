@@ -6,8 +6,11 @@ const port = process.env.PORT;
 app.use(express.json());
 
 import { connectedDB } from "./database/connection";
-import { router } from "./routes/quizRoutes/quiz.route";
-app.use("/", router);
+import { quizRouter } from "./routes/quizRoutes/quiz.route";
+import { annouceRouter } from "./routes/annoucRoutes/annouce.route";
+app.use("/api/quizzes", quizRouter);
+app.use("/api/annoucements", annouceRouter);
+
 
 const connect = async () => {
   try {
