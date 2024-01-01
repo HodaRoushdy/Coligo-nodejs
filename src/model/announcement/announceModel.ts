@@ -1,6 +1,6 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
-const annouceSchema = new mongoose.Schema({
+const announceSchema = new mongoose.Schema({
   id: String,
   name: {
     type: String,
@@ -29,6 +29,4 @@ const annouceSchema = new mongoose.Schema({
   },
 });
 
-export const AnnouceModel = mongoose.model("AnnouceModel",annouceSchema)
-
-
+export const AnnounceModel = mongoose.model("AnnounceModel", announceSchema);
