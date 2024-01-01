@@ -1,15 +1,12 @@
-import { NextFunction } from "express";
 
-const asyncWrapper = async (
-  callback: (req: Request, res: Response, next: NextFunction) => Response
+export const asyncWrapper = async (
+  callback: (req: Request, res: Response) => Promise<void>
 ) => {
-  return async (req: Request, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response) => {
     try {
-      await callback(req, res, next);
+      await callback(req, res);
     } catch (error) {
-      next(error);
+      console.log(error);
     }
   };
 };
-
-module.exports = asyncWrapper

@@ -7,7 +7,7 @@ app.use(express.json());
 
 import { connectedDB } from "./database/connection";
 import { router } from "./routes/quizRoutes/quiz.route";
-app.use("/api/quizzes", router);
+app.use("/", router);
 
 const connect = async () => {
   try {
