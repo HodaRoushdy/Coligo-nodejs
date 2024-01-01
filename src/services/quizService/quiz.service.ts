@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { QuizModel } from "../../model/quiz/quizModel";
 
 // const asyncWrapper = require("../../middlewares/async-wrapper");
+// import {asyn}
 
 // export const getAllQuizService = asyncWrapper(
 //   async (req: Request, res: Response, next: NextFunction) => {
@@ -31,23 +32,25 @@ export const getSpecificQuizService = async (
     next(err);
   }
 };
+
+
+
 export const getAllQuizService = async (
   err: Error,
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  //   try {
-  const allQuizzes = await QuizModel.find({});
-  // if (specificQuiz) {
-  res.status(201).json({ status: "success", data: { allQuizzes } });
-  // } else {
-  //   next(err);
-  // }
-  //   }
-  //   catch (err) {
-  //     next(err);
-  //   }
+  try {
+    const allQuizzes = await QuizModel.find({});
+    if (allQuizzes) {
+      res.status(201).json({ status: "success", data: { allQuizzes } });
+    } else {
+      next(err);
+    }
+  } catch (err) {
+    next(err);
+  }
 };
 
 // export const updateQuizService = asyncWrapper(
@@ -89,11 +92,3 @@ export const getAllQuizService = async (
 //       .json({ data: { addedQuiz }, message: "created successfully" });
 //   }
 // );
-
-module.exports = {
-  getAllQuizService,
-  getSpecificQuizService,
-  //   updateQuizService,
-  //   deleteQuizService,
-  //   addQuizService,
-};

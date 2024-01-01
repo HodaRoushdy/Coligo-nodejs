@@ -1,13 +1,23 @@
-const express = require('express');
-const app = express()
 import "dotenv/config";
+import express from "express";
+const app = express();
 
-const port = process.env.PORT
+const port = process.env.PORT;
 app.use(express.json());
 
-const quizzes = require("../src/routes/quizRoutes/quiz.route")
-app.use("/api/quizzes", quizzes);
+import { connectedDB } from "./database/connection";
+import { router } from "./routes/quizRoutes/quiz.route";
+app.use("/api/quizzes", router);
 
-app.listen(port, () => {
-    console.log(`app listening on port ${port}`)
-})
+const connect = async () => {
+  try {
+    await connectedDB;
+    app.listen(port, () => {
+      console.log(`app listening on port ${port}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+connect();

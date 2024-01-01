@@ -21,4 +21,4 @@ const quizSchema = new mongoose.Schema({
   },
 });
 export const QuizModel = mongoose.model("QuizModel", quizSchema);
-module.exports = QuizModel;
+
