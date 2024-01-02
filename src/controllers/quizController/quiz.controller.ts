@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 
 import mongoose from "mongoose";
 import { asyncWrapper } from "../../middlewares/async-wrapper";
-import { notFound } from "../../middlewares/not-found";
+import { badRequest } from "../../middlewares/bad-request";
 import {
   addQuizServ,
   deleteQuizServ,
@@ -19,7 +19,7 @@ export const getSpecificQuiz = asyncWrapper(
       res.status(200).json({ status: "success", data: { specificQuiz } });
     } else {
       res.json({ message: "Quiz not found" });
-      notFound(req, res);
+      badRequest(req, res);
     }
   }
 );
@@ -29,7 +29,7 @@ export const getAllQuiz = asyncWrapper(async (req: Request, res: Response) => {
   if (allQuizzes) {
     res.status(200).json({ status: "success", data: { allQuizzes } });
   } else {
-    notFound(req, res);
+    badRequest(req, res);
   }
 });
 
@@ -46,7 +46,7 @@ export const updateQuiz = asyncWrapper(async (req: Request, res: Response) => {
     });
   } else {
     res.json({ message: "Quiz not found" });
-    notFound(req, res);
+    badRequest(req, res);
   }
 });
 
@@ -62,7 +62,7 @@ export const deleteQuiz = asyncWrapper(async (req: Request, res: Response) => {
     });
   } else {
     res.json({ message: "Quiz not found" });
-    notFound(req, res);
+    badRequest(req, res);
   }
 });
 
@@ -78,7 +78,7 @@ export const addQuiz = asyncWrapper(async (req: Request, res: Response) => {
         data: newQuiz,
       });
     } else {
-      notFound(req, res);
+      badRequest(req, res);
     }
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {

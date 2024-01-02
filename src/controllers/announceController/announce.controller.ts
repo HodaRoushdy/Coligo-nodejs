@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import mongoose from "mongoose";
-import { notFound } from "../../middlewares/not-found";
+import { badRequest } from "../../middlewares/bad-request";
 import {
   addAnnounceServ,
   deleteAnnounceServ,
@@ -14,7 +14,7 @@ export const getAllAnnounceData = async (req: Request, res: Response) => {
   if (allAnnoucements) {
     res.status(200).json({ status: "success", data: { allAnnoucements } });
   } else {
-    notFound(req, res);
+    badRequest(req, res);
     res.json({ message: "no Announcements" });
   }
 };
@@ -28,7 +28,7 @@ export const getSpecificAnnounce = async (req: Request, res: Response) => {
       .json({ status: "success", data: { annoucement: announcement } });
   } else {
     res.json({ message: "Announcement not found" });
-    notFound(req, res);
+    badRequest(req, res);
   }
 };
 
@@ -44,7 +44,7 @@ export const updateAnnounce = async (req: Request, res: Response) => {
     });
   } else {
     res.json({ message: "Announcement not found" });
-    notFound(req, res);
+    badRequest(req, res);
   }
 };
 
@@ -57,7 +57,7 @@ export const deleteAnnounce = async (req: Request, res: Response) => {
       .json({ status: "success", message: "deleted successfully" });
   } else {
     res.json({ message: "Announcement not found" });
-    notFound(req, res);
+    badRequest(req, res);
   }
 };
 
@@ -72,7 +72,7 @@ export const createAnnounce = async (req: Request, res: Response) => {
         data: newAnnounce,
       });
     } else {
-      notFound(req, res);
+      badRequest(req, res);
     }
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
