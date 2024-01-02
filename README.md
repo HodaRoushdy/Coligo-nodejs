@@ -3,6 +3,8 @@
 ## Description
 - it is a backend application which provide web service using NodeJs , MongoDB and Mongoose , it has a CRUD operations for Announcements and Quizzes in Platform
 
+# you can see the deployed version in : https://coligo-nodejs.vercel.app/
+
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
@@ -32,7 +34,6 @@
 
 
 ## License
-[Specify the project's license]
----
+- Huda Roushdy
 
 # This project was completed in 2 days.
