@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const announceSchema = new mongoose.Schema({
-  id: String,
+  id: mongoose.Schema.Types.ObjectId,
   name: {
     type: String,
     required: true,

@@ -5,7 +5,7 @@ import {
   getAllQuiz,
   getSpecificQuiz,
   updateQuiz,
-} from "../../controllers/quizController/quiz.controller"
+} from "../../controllers/quizController/quiz.controller";
 
 export const quizRouter = express.Router();
 

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const quizSchema = new mongoose.Schema({
-  id:String,
+  id: mongoose.Schema.Types.ObjectId,
   course: {
     type: String,
     required: [true, "you must enter a course name"],
@@ -12,14 +12,12 @@ const quizSchema = new mongoose.Schema({
     type: String,
     required: [true, "you must enter a quiz topic"],
     trim: true,
-    maxLength: [20, "course name must not be more than 20 characters"],
+    maxLength: [30, "topic of quiz must not be more than 20 characters"],
   },
-  due_to: {
+  dueTo: {
     type: String,
-    required: [true, "you must enter a quiz date"],
+    required: [true, "you must enter a quiz Date"],
     trim: true,
-    maxLength: [20, "course name must not be more than 20 characters"],
   },
 });
 export const QuizModel = mongoose.model("QuizModel", quizSchema);
-
