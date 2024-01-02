@@ -9,13 +9,12 @@ app.use(express.json());
 import { connectedDB } from "./database/connection";
 import { announceRouter } from "./routes/announcRoutes/annouce.route";
 import { quizRouter } from "./routes/quizRoutes/quiz.route";
-app.use("/", (req, res) => {
-  res.status(200).json({ message: "welcome to Coligo! " });
-});
 
 app.use("/api/quizzes", quizRouter);
 app.use("/api/announcements", announceRouter);
-
+app.use("/", (req, res) => {
+  res.status(200).json({ message: "welcome to Coligo! " });
+});
 const connect = async () => {
   try {
     await connectedDB;
