@@ -27,7 +27,7 @@ export const getSpecificQuiz = asyncWrapper(
 export const getAllQuiz = asyncWrapper(async (req: Request, res: Response) => {
   const allQuizzes = await getAllQuizzesServ();
   if (allQuizzes) {
-    res.status(201).json({ status: "success", data: { allQuizzes } });
+    res.status(200).json({ status: "success", data: { allQuizzes } });
   } else {
     notFound(req, res);
   }
